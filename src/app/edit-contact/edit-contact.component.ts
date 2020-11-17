@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContactService } from '../contact.service';
 import { Contact } from '../types';
 
@@ -12,7 +12,8 @@ export class EditContactComponent implements OnInit {
   contact: Contact = { id: '', name: '', address: '', phone: '', photoUrl: '' }
   constructor(
     private contactService: ContactService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +24,9 @@ export class EditContactComponent implements OnInit {
 
   onSubmit(args): void {
     this.contactService.editListing(args)
-      .subscribe(contact => this.contact = contact);
+      .subscribe((contact) => {
+        this.contact = contact;
+        this.router.navigateByUrl('/contacts/' + this.contact.id);
+      });
   }
 }

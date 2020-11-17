@@ -20,7 +20,8 @@ export class CreateContactComponent implements OnInit {
 
   onSubmit(contact: Contact): void {
     this.contactService.createListing(contact)
-      .subscribe(() => {
+      .subscribe((contact) => {
+        this.router.navigateByUrl('/contacts/' + contact.id);
       });
   }
 
