@@ -21,7 +21,6 @@ export class CreateContactComponent implements OnInit {
   onSubmit(contact: Contact): void {
     this.contactService.createListing(contact)
       .subscribe(() => {
-        console.log('c');
       });
   }
 

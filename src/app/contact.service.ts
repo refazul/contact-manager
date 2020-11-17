@@ -38,19 +38,20 @@ export class ContactService {
 			//	user && user.getIdToken().then(token => {
 			//		if (user && token) {
 			this.http.post<Contact>(`/api/${this.root}`, { ...args }, httpOptionsWithAuthToken())
-				.subscribe(() => observer.next());
+				.subscribe((contact) => observer.next(contact));
 			//		}
 			//	});
 			//});
 		});
 	}
-	editListing(id: string, name: string, description: string, price: number): Observable<Contact> {
+	editListing(args): Observable<Contact> {
+		const { id, ...others } = args;
 		return new Observable<Contact>(observer => {
 			//this.auth.user.subscribe(user => {
 			//	user && user.getIdToken().then(token => {
 			//		if (user && token) {
-			this.http.post<Contact>(`/api/${this.root}/${id}`, { name, description, price }, httpOptionsWithAuthToken())
-				.subscribe(() => observer.next());
+			this.http.post<Contact>(`/api/${this.root}/${id}`, { ...others }, httpOptionsWithAuthToken())
+				.subscribe((contact) => observer.next(contact));
 			//		}
 			//	});
 			//});

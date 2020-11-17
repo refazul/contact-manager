@@ -8,22 +8,14 @@ import { Contact } from '../types';
 })
 export class ContactFormComponent {
   @Input() buttonText = '';
-  
-  @Input() currentName = '';
-  @Input() currentAddress = '';
-  @Input() currentPhone = '';
 
-  @Output() onSubmit = new EventEmitter<Contact>();
+  @Input() contact = { name: '', address: '', phone: '' };
+
+  @Output() onSubmit = new EventEmitter<any>();
 
   constructor() { }
 
   onButtonClicked(): void {
-    this.onSubmit.emit({
-      id: '',
-      name: this.currentName,
-      address: this.currentAddress,
-      phone: this.currentPhone,
-      photoUrl: ''
-    });
+    this.onSubmit.emit(this.contact);
   }
 }

@@ -1,9 +1,7 @@
 <div class="content-box">
-    <a routerLink="/contacts">
-        <button>Back</button>
-    </a>
     <h2>{{contact.name}}</h2>
     <p>{{contact.address}}</p>
     <p>{{contact.phone}}</p>
     <p>{{contact.photoUrl}}</p>
+    <button routerLink="/edit-contact/{{contact.id}}">Edit</button>
 </div>
