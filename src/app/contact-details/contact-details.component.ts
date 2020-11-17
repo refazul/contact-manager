@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContactService } from '../contact.service';
 import { Contact } from '../types';
 
@@ -9,10 +9,11 @@ import { Contact } from '../types';
   styleUrls: ['./contact-details.component.scss']
 })
 export class ContactDetailsComponent implements OnInit {
-  contact : Contact | undefined
+  contact: Contact = { id: '', name: '', address: '', phone: '', photoUrl: '' }
   constructor(
     private route: ActivatedRoute,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -21,4 +22,10 @@ export class ContactDetailsComponent implements OnInit {
       .subscribe(contact => this.contact = contact);
   }
 
+  onDeleteClick(id): void {
+    this.contactService.deleteListing(id)
+      .subscribe(() => {
+        this.router.navigateByUrl('/');
+      });
+  }
 }

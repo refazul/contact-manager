@@ -4,4 +4,5 @@
     <p>{{contact.phone}}</p>
     <p>{{contact.photoUrl}}</p>
     <button routerLink="/edit-contact/{{contact.id}}">Edit</button>
+    <button (click)="onDeleteClick(contact.id)">Delete</button>
 </div>
