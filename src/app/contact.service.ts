@@ -32,25 +32,12 @@ export class ContactService {
 		return this.http.get<Contact>(`/api/${this.root}/${id}`);
 	}
 
-	deleteListing(id: string): Observable<any> {
-		return new Observable<Contact[]>(observer => {
-			//this.auth.user.subscribe(user => {
-			//	user && user.getIdToken().then(token => {
-			//		if (user && token) {
-			this.http.delete<any>(`/api/${this.root}/${id}`, httpOptionsWithAuthToken())
-				.subscribe(() => observer.next());
-			//		}
-			//	});
-			//});
-		});
-	}
-
-	createListing(name: string, description: string, price: number): Observable<Contact> {
+	createListing(args): Observable<Contact> {
 		return new Observable<Contact>(observer => {
 			//this.auth.user.subscribe(user => {
 			//	user && user.getIdToken().then(token => {
 			//		if (user && token) {
-			this.http.post<Contact>(`/api/${this.root}`, { name, description, price }, httpOptionsWithAuthToken())
+			this.http.post<Contact>(`/api/${this.root}`, { ...args }, httpOptionsWithAuthToken())
 				.subscribe(() => observer.next());
 			//		}
 			//	});
@@ -63,6 +50,18 @@ export class ContactService {
 			//	user && user.getIdToken().then(token => {
 			//		if (user && token) {
 			this.http.post<Contact>(`/api/${this.root}/${id}`, { name, description, price }, httpOptionsWithAuthToken())
+				.subscribe(() => observer.next());
+			//		}
+			//	});
+			//});
+		});
+	}
+	deleteListing(id: string): Observable<any> {
+		return new Observable<Contact[]>(observer => {
+			//this.auth.user.subscribe(user => {
+			//	user && user.getIdToken().then(token => {
+			//		if (user && token) {
+			this.http.delete<any>(`/api/${this.root}/${id}`, httpOptionsWithAuthToken())
 				.subscribe(() => observer.next());
 			//		}
 			//	});
