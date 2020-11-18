@@ -10,6 +10,9 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
 import { CreateContactComponent } from './create-contact/create-contact.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
